@@ -195,14 +195,27 @@
 
   /* ---------- TIM ---------- */
   .team-sec { background: var(--paper-2); }
-  .partner { display: grid; grid-template-columns: 4fr 7fr; gap: 80px; align-items: center; }
-  .partner img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; }
-  .partner h3 { font-size: 40px; margin-bottom: 8px; }
-  .partner .role { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--accent-ink); margin-bottom: 24px; display: block; }
-  .partner p { color: var(--text-muted); max-width: 60ch; margin-bottom: 16px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; margin-bottom: 32px; }
-  .chips span { font-size: 12px; font-weight: 500; padding: 4px 12px; border: 1px solid var(--line); background: var(--paper); }
-  @media (max-width: 900px) { .partner { grid-template-columns: 1fr; gap: 40px; } .partner img { max-width: 360px; } .partner h3 { font-size: 32px; } }
+  .team { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .member { position: relative; background: var(--paper); border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .member::before { content: ""; position: absolute; left: 0; top: 0; z-index: 2; height: 2px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease); }
+  .member:hover::before { transform: scaleX(1); }
+  .member-ph { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-2); }
+  .member-ph img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+  .member:hover .member-ph img { transform: scale(1.04); }
+  .member-ph span { position: absolute; left: 0; bottom: 0; background: var(--ink); color: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 8px 16px; }
+  .member-body { padding: 40px 40px 32px; display: flex; flex-direction: column; flex: 1; }
+  .member h3 { font-size: 36px; margin-bottom: 8px; }
+  .member .sub { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--accent-ink); margin-bottom: 28px; }
+  .member dl { border-top: 1px solid var(--line); margin-bottom: 32px; }
+  .member dl div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding-top: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+  .member dt { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); padding-top: 4px; }
+  .member dd { color: var(--text-muted); }
+  .member-contact { margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px; }
+  .member-contact a { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding-left: 16px; padding-right: 16px; border: 1px solid var(--line); font-size: 16px; font-weight: 500; transition: border-color .3s, background .3s; }
+  .member-contact a:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .member-contact svg { width: 16px; height: 16px; stroke: var(--accent-ink); fill: none; stroke-width: 1.6; flex: none; }
+  @media (max-width: 991px) { .team { grid-template-columns: 1fr; max-width: 640px; } }
+  @media (max-width: 600px) { .member-body { padding: 28px 20px 24px; } .member h3 { font-size: 28px; } .member dl div { grid-template-columns: 1fr; gap: 4px; } .member-contact a { font-size: 12px; } }
 
   /* ---------- TARIFA ---------- */
   .dark { background: var(--ink); color: var(--on-dark); }
@@ -416,18 +429,48 @@
     </section>
 
     <!-- TIM -->
-    <section class="team-sec">
-      <div class="wrap partner">
-        <img src="assets/tamara-radojcic.jpg" alt="Advokat Tamara Radojčić za radnim stolom u kancelariji" loading="lazy" width="640" height="797" data-rv>
-        <div>
+    <section id="tim" class="team-sec">
+      <div class="wrap">
+        <div class="sec-head">
           <div data-rv>
             <span class="tag">Tim kancelarije</span>
-            <h3>Tamara Radojčić</h3>
-            <span class="role">Advokat</span>
+            <h2 class="h2">Advokati kojima <em>poveravate predmet.</em></h2>
           </div>
-          <p data-rv>Diplomirala na Pravnom fakultetu Univerziteta u Beogradu, međunarodni smer, gde je završila i master iz trgovinskopravnih poslova sa prosečnom ocenom 9,7. Danas je doktorand na istom fakultetu.</p>
-          <p data-rv>Praksu je stekla kao advokatski pripravnik u kancelariji Simović i kod Zaštitnika građana. Govori engleski i ruski.</p>
-          <p data-rv><a href="tel:+381695288365" class="tlink">069 528 8365</a></p>
+          <p class="lead" data-rv style="--d:.1s">Upoznajte advokate kancelarije. Svakoj od njih možete se obratiti direktno, telefonom ili mejlom.</p>
+        </div>
+        <div class="team">
+          <article class="member" data-rv>
+            <div class="member-ph"><img src="assets/tatjana-simovic.jpg" alt="Advokat Tatjana M. Simović u tamnom sakou, prekrštenih ruku" loading="lazy" width="462" height="641" style="object-position: 50% 18%"><span>Osnivač</span></div>
+            <div class="member-body">
+              <h3>Tatjana M. Simović</h3>
+              <p class="sub">Advokat od 1991. godine</p>
+              <dl>
+                <div><dt>Obrazovanje</dt><dd>Pravni fakultet Univerziteta u Beogradu, krivično-sudski smer</dd></div>
+                <div><dt>Iskustvo</dt><dd>Pripravnik od 1989, samostalna kancelarija od 1991. Tokom studija sudija porotnik.</dd></div>
+                <div><dt>Članstvo</dt><dd>Advokatska komora Srbije i Advokatska komora Beograda, legitimacija br. 1971</dd></div>
+              </dl>
+              <div class="member-contact">
+                <a href="tel:+381692082800"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>069 208 2800</a>
+                <a href="mailto:tanjasimovic5@gmail.com"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 6l8 7 8-7"/></svg>tanjasimovic5@gmail.com</a>
+              </div>
+            </div>
+          </article>
+          <article class="member" data-rv style="--d:.12s">
+            <div class="member-ph"><img src="assets/tamara-radojcic.jpg" alt="Advokat Tamara Radojčić za radnim stolom u kancelariji" loading="lazy" width="640" height="797" style="object-position: 50% 42%"><span>Advokat</span></div>
+            <div class="member-body">
+              <h3>Tamara Radojčić</h3>
+              <p class="sub">Doktorand Pravnog fakulteta u Beogradu</p>
+              <dl>
+                <div><dt>Obrazovanje</dt><dd>Pravni fakultet Univerziteta u Beogradu, međunarodni smer. Master iz trgovinskopravnih poslova, prosečna ocena 9,7.</dd></div>
+                <div><dt>Praksa</dt><dd>Advokatski pripravnik u kancelariji Simović, praksa kod Zaštitnika građana</dd></div>
+                <div><dt>Jezici</dt><dd>Engleski i ruski</dd></div>
+              </dl>
+              <div class="member-contact">
+                <a href="tel:+381695288365"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>069 528 8365</a>
+                <a href="mailto:tamararadojcic93@gmail.com"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 6l8 7 8-7"/></svg>tamararadojcic93@gmail.com</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
